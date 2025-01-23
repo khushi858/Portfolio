@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: 191919;
+            background-color: #f9f6f6;
+        }
+
+        h1, h2 {
+            color: #060707;
+        }
+
+        a {
+            text-decoration: none;
+            color: #0a0b0b;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        button {
+            background-color: #8ca8b5;
+            color: #0c0c0c;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #0088cc;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            background: #333;
+            color: #fff;
+        }
+
+        .header h1 {
+            font-size: 36px;
+        }
+
+        .header p {
+            margin: 20px 0;
+        }
+
+        .header-buttons {
+            display: flex;
+            justify-content: center;
+        }
+
+        .social-icons {
+            margin-top: 20px;
+            display:flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .social-icons a {
+            font-size: 20px;
+        }
+
+        /* About Section */
+        .about {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .about img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 20px 0;
+        }
+
+        /* Skills and Journey */
+        .skills-journey {
+            display: flex;
+            justify-content: space-around;
+            padding: 40px 20px;
+            flex-wrap: wrap;
+        }
+
+        .skills, .journey {
+            width: 45%;
+            background: #474747;
+            color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 10px;
+        }
+
+        .skills h2, .journey h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            background-color: #bcb8b8;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar span {
+            display: block;
+            height: 20px;
+           background-color:#333;      
+      }
+
+        .projects ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .projects li {
+            margin-bottom: 10px;
+            background: #5c5c5c;
+           color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .projects strong {
+            color: rgb(49, 47, 47);
+        }
+        /* Contact Section */
+        .contact {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .contact form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .contact input, .contact textarea {
+            width: 100%;
+            max-width: 500px;
+            padding: 10px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background: #333;
+    color: #fff;
+        }
+
+        .contact input::placeholder, .contact textarea::placeholder {
+            color: #aaaaaa;
+        }
+
+        .contact button {
+            width: 150px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #333;
+            color: #fff;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Hi, I'm Khushi Upadhyay</h1>
+        <h2>Frontend Developer</h2>
+        <p>A passionate Computer Science Engineer with expertise in software development, algorithm design, and system architecture. 
+            Proficient in Java and C++, with hands-on experience in building and optimizing applications using modern frameworks. 
+            Skilled in problem-solving and data structures. Strong foundation in databases and cybersecurity principles. 
+            Experienced in collaborating with cross-functional teams to deliver high-quality software solutions. 
+            Passionate about leveraging technology to solve complex challenges and enhance user experience.</p>
+        <div class="header-buttons">
+            <button>Hire Me</button>
+            <button>Let's Talk</button>
+        </div>
+    </div>
+
+    <div class="skills-journey">
+        <div class="skills">
+            <h2>My Skills</h2>
+            <div>
+                <p>HTML</p>
+                <div class="progress-bar"><span style="width: 90%;"></span></div>
+            </div>
+            <div>
+                <p>CSS</p>
+                <div class="progress-bar"><span style="width: 80%;"></span></div>
+            </div>
+            <div>
+                <p>JavaScript</p>
+                <div class="progress-bar"><span style="width: 70%;"></span></div>
+            </div>
+            <div>
+                <p>MongoDB</p>
+                <div class="progress-bar"><span style="width: 75%;"></span></div>
+            </div>
+            <div>
+                <p>MySQL</p>
+                <div class="progress-bar"><span style="width: 90%;"></span></div>
+            </div>
+            <div>
+                <p>Git,Github</p>
+                <div class="progress-bar"><span style="width: 80%;"></span></div>
+            </div>
+            <div>
+                <p>Blockchain</p>
+                <div class="progress-bar"><span style="width: 70%;"></span></div>
+            </div>
+            <div>
+                <p>Web3.js</p>
+                <div class="progress-bar"><span style="width: 75%;"></span></div>
+            </div>
+        </div>
+
+        <div class="journey">
+            <h2>My Journey</h2>
+            <div>
+                <h3>Education</h3>
+                <p>Bachelor's Degree - Institute of engineering and rural technology, Prayagraj, Uttar Pradesh </p>
+            </div>
+            <div>
+                <h3>Experience</h3>
+                <p>Subject Matter Expert- Chegg</p>
+            </div>
+            <div class="projects">
+                <h2>My Projects</h2>
+                <ul>
+                    <li><strong>Portfolio</strong> 
+                        <p>Description: Developed a responsive and interactive personal portfolio website to showcase skills, projects, and achievements.</p>
+        
+                        <p>Technologies Used: HTML, CSS, JavaScript, Bootstrap, GitHub Pages</p>
+                        
+                        <p> Key Features: - Created a visually appealing UI/UX with dynamic content and smooth navigation.
+                         - Integrated contact forms and social media links for user engagement. 
+                        - Deployed and maintained the website on GitHub Pages with regular updates. </p></li>
+                    <li><strong>Bus Reservation Database Management System</strong> 
+                        <p>Description: Designed and implemented a database management system for a bus reservation platform. </p>
+        
+                        <p> Technologies Used: HTML, CSS, JavaScript, SQL, MySQL, HTML, CSS, JavaScript, PHP </p>
+                        
+                        <p>Key Features: - Managed customer information, bus schedules, and booking records using SQL queries. - Implemented complex queries for seat availability checks, ticket cancellations, and revenue reports. 
+                        - Ensured data integrity with normalization and foreign key constraints. </p></li>
+                   </ul> 
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="social-icons">
+        <a href="#">LinkedIn</a>
+        <a href="#">GitHub</a>
+    </div>
+
+    <div class="contact">
+        <h2>Contact Me</h2>
+        <form>
+            <input type="text" placeholder="Full Name">
+            <input type="email" placeholder="Email Address">
+            <input type="text" placeholder="Mobile Number">
+            <textarea placeholder="Your Message"></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2023 by Jacob Aiden | All Rights Reserved</p>
+    </div>
+</body>
+</html>
