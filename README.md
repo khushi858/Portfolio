@@ -68,10 +68,16 @@ Portfolio/
 ## Installation
 
 1. **Clone the repository**
-```bash
-git clone https://github.com/<your-username>/portfolio.git
-cd portfolio
-npm install
-npm run dev
-http://localhost:5173/
+    ```bash
+    git clone https://github.com/<your-username>/portfolio.git
+    cd portfolio
+2. **Install dependecies**
+    ```bash
+       npm install
+4. **Run the development server**
+   ```bash
+   npm run dev
+5. **Open in Browser**
+ ```bash
+ http://localhost:5173/
 
