@@ -50,20 +50,21 @@ This is the personal **portfolio website of Khushi Upadhyay**, showcasing projec
 
 ## Project Structure
 Portfolio/
-├── src/
-│ ├── components/ # React components
-│ ├── pages/ # Page components
-│ ├── assets/ # Images, videos, icons
-│ ├── App.jsx
-│ └── main.jsx
-├── index.html
-├── package.json
-├── tailwind.config.js
-├── postcss.config.js
-└── README.md
+src/
+├── components/ # React components
+├── pages/ # Page components
+├── assets/ # Images, videos, icons
+├── App.jsx
+└── main.jsx
+index.html
+package.json
+tailwind.config.js
+postcss.config.js
+README.md
 
 
 ---
+
 
 ## Installation
 
