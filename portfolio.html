@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex Johnson - Full Stack Developer</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+        html, body {
+            height: 100%;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .gradient-border {
+            background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+            padding: 2px;
+            border-radius: 12px;
+        }
+        
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+        
+        .skill-bar {
+            transition: width 2s ease-in-out;
+        }
+        
+        .typewriter {
+            overflow: hidden;
+            border-right: 3px solid #4a5568;
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #4a5568 }
+        }
+        
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(2deg); }
+            66% { transform: translateY(-10px) rotate(-1deg); }
+        }
+        
+        .slide-in-left {
+            animation: slideInLeft 0.8s ease-out;
+        }
+        
+        .slide-in-right {
+            animation: slideInRight 0.8s ease-out;
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        
+        .bounce-in {
+            animation: bounceIn 0.8s ease-out;
+        }
+        
+        .pulse-glow {
+            animation: pulseGlow 2s infinite;
+        }
+        
+        @keyframes slideInLeft {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(74, 85, 104, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(74, 85, 104, 0.5); }
+        }
+        
+        .scroll-smooth {
+            scroll-behavior: smooth;
+        }
+        
+        .bg-gradient-primary {
+            background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+        }
+        
+        .bg-gradient-secondary {
+            background: linear-gradient(135deg, #718096 0%, #4a5568 100%);
+        }
+        
+        .bg-gradient-success {
+            background: linear-gradient(135deg, #68d391 0%, #38a169 100%);
+        }
+        
+        .bg-gradient-warning {
+            background: linear-gradient(135deg, #a0aec0 0%, #718096 100%);
+        }
+        
+        .bg-gradient-dark {
+            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+        }
+        
+        .parallax {
+            transform: translateZ(0);
+            transition: transform 0.1s ease-out;
+        }
+        
+        .project-overlay {
+            background: linear-gradient(45deg, rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.9));
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+        
+        .skill-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .skill-icon:hover {
+            transform: scale(1.2) rotate(10deg);
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+            left: 0;
+        }
+        
+        .timeline-item {
+            position: relative;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+            box-shadow: 0 0 20px rgba(74, 85, 104, 0.3);
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: particleFloat 8s infinite linear;
+        }
+
+        @keyframes particleFloat {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+
+        .morphing-blob {
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            animation: morph 8s ease-in-out infinite;
+        }
+
+        @keyframes morph {
+            0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+            50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+            100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+        }
+
+        .text-glow {
+            text-shadow: 0 0 20px rgba(74, 85, 104, 0.3);
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hover-lift {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .magnetic-hover {
+            transition: transform 0.3s ease;
+        }
+
+        .testimonial-card {
+            background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+            border: 1px solid rgba(102, 126, 234, 0.1);
+        }
+
+        .service-icon {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .progress-ring {
+            transform: rotate(-90deg);
+        }
+
+        .progress-ring-circle {
+            stroke-dasharray: 251.2;
+            stroke-dashoffset: 251.2;
+            transition: stroke-dashoffset 2s ease-in-out;
+        }
+
+        .animated-bg {
+            background: linear-gradient(-45deg, #4a5568, #2d3748, #718096, #a0aec0);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .neon-glow {
+            box-shadow: 0 0 5px #4a5568, 0 0 10px #4a5568, 0 0 15px #4a5568, 0 0 20px #4a5568;
+        }
+
+        .cursor-trail {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(74, 85, 104, 0.6) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.1s ease;
+        }
+    </style>
+</head>
+<body class="scroll-smooth">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+
+        function Portfolio() {
+            const [activeSection, setActiveSection] = useState('home');
+            const [isMenuOpen, setIsMenuOpen] = useState(false);
+            const [scrollY, setScrollY] = useState(0);
+            const [skillsVisible, setSkillsVisible] = useState(false);
+            const [contactForm, setContactForm] = useState({ name: '', email: '', message: '' });
+            const [isSubmitted, setIsSubmitted] = useState(false);
+            const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+            const [cursorTrails, setCursorTrails] = useState([]);
+            
+            const skillsRef = useRef(null);
+            const particlesRef = useRef([]);
+
+            useEffect(() => {
+                const handleScroll = () => {
+                    setScrollY(window.scrollY);
+                    
+                    // Check if skills section is visible
+                    if (skillsRef.current) {
+                        const rect = skillsRef.current.getBoundingClientRect();
+                        if (rect.top < window.innerHeight && rect.bottom > 0) {
+                            setSkillsVisible(true);
+                        }
+                    }
+
+                    // Reveal elements on scroll
+                    const reveals = document.querySelectorAll('.scroll-reveal');
+                    reveals.forEach(element => {
+                        const elementTop = element.getBoundingClientRect().top;
+                        const elementVisible = 150;
+                        
+                        if (elementTop < window.innerHeight - elementVisible) {
+                            element.classList.add('revealed');
+                        }
+                    });
+                };
+
+                const handleMouseMove = (e) => {
+                    setMousePosition({ x: e.clientX, y: e.clientY });
+                    
+                    // Create cursor trail effect
+                    const newTrail = {
+                        id: Date.now(),
+                        x: e.clientX,
+                        y: e.clientY
+                    };
+                    
+                    setCursorTrails(prev => [...prev.slice(-5), newTrail]);
+                };
+
+                window.addEventListener('scroll', handleScroll);
+                window.addEventListener('mousemove', handleMouseMove);
+                
+                // Create floating particles
+                const createParticles = () => {
+                    for (let i = 0; i < 20; i++) {
+                        setTimeout(() => {
+                            const particle = document.createElement('div');
+                            particle.className = 'particle';
+                            particle.style.left = Math.random() * 100 + '%';
+                            particle.style.width = Math.random() * 4 + 2 + 'px';
+                            particle.style.height = particle.style.width;
+                            particle.style.background = `rgba(74, 85, 104, ${Math.random() * 0.4 + 0.1})`;
+                            particle.style.animationDelay = Math.random() * 8 + 's';
+                            particle.style.animationDuration = (Math.random() * 10 + 8) + 's';
+                            
+                            document.body.appendChild(particle);
+                            
+                            setTimeout(() => {
+                                if (particle.parentNode) {
+                                    particle.parentNode.removeChild(particle);
+                                }
+                            }, 18000);
+                        }, i * 400);
+                    }
+                };
+
+                createParticles();
+                const particleInterval = setInterval(createParticles, 8000);
+
+                return () => {
+                    window.removeEventListener('scroll', handleScroll);
+                    window.removeEventListener('mousemove', handleMouseMove);
+                    clearInterval(particleInterval);
+                };
+            }, []);
+
+            const scrollToSection = (sectionId) => {
+                const element = document.getElementById(sectionId);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                    setActiveSection(sectionId);
+                    setIsMenuOpen(false);
+                }
+            };
+
+            const handleContactSubmit = (e) => {
+                e.preventDefault();
+                setIsSubmitted(true);
+                setTimeout(() => {
+                    setIsSubmitted(false);
+                    setContactForm({ name: '', email: '', message: '' });
+                }, 3000);
+            };
+
+            const skills = [
+                { name: 'React', level: 95, icon: '⚛️', color: 'bg-gray-600' },
+                { name: 'JavaScript', level: 90, icon: '🟨', color: 'bg-gray-500' },
+                { name: 'TypeScript', level: 85, icon: '🔷', color: 'bg-gray-700' },
+                { name: 'Node.js', level: 88, icon: '🟢', color: 'bg-gray-600' },
+                { name: 'Python', level: 82, icon: '🐍', color: 'bg-gray-500' },
+                { name: 'CSS/Tailwind', level: 92, icon: '🎨', color: 'bg-gray-700' },
+                { name: 'MongoDB', level: 80, icon: '🍃', color: 'bg-gray-600' },
+                { name: 'AWS', level: 75, icon: '☁️', color: 'bg-gray-500' }
+            ];
+
+            const projects = [
+                {
+                    id: 1,
+                    title: 'E-Commerce Platform',
+                    description: 'Full-stack e-commerce solution with React, Node.js, and MongoDB. Features include user authentication, payment processing, and admin dashboard.',
+                    image: '🛒',
+                    tech: ['React', 'Node.js', 'MongoDB', 'Stripe'],
+                    github: '#',
+                    live: '#',
+                    gradient: 'bg-gradient-primary'
+                },
+                {
+                    id: 2,
+                    title: 'Task Management App',
+                    description: 'Collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.',
+                    image: '📋',
+                    tech: ['React', 'Socket.io', 'Express', 'PostgreSQL'],
+                    github: '#',
+                    live: '#',
+                    gradient: 'bg-gradient-secondary'
+                },
+                {
+                    id: 3,
+                    title: 'Weather Dashboard',
+                    description: 'Beautiful weather application with location-based forecasts, interactive maps, and detailed weather analytics.',
+                    image: '🌤️',
+                    tech: ['Vue.js', 'OpenWeather API', 'Chart.js'],
+                    github: '#',
+                    live: '#',
+                    gradient: 'bg-gradient-success'
+                },
+                {
+                    id: 4,
+                    title: 'Social Media Analytics',
+                    description: 'Analytics dashboard for social media metrics with data visualization, automated reporting, and performance insights.',
+                    image: '📊',
+                    tech: ['React', 'D3.js', 'Python', 'FastAPI'],
+                    github: '#',
+                    live: '#',
+                    gradient: 'bg-gradient-warning'
+                },
+                {
+                    id: 5,
+                    title: 'AI Chat Assistant',
+                    description: 'Intelligent chatbot with natural language processing, context awareness, and integration with multiple platforms.',
+                    image: '🤖',
+                    tech: ['Python', 'TensorFlow', 'Flask', 'OpenAI'],
+                    github: '#',
+                    live: '#',
+                    gradient: 'bg-gradient-dark'
+                },
+                {
+                    id: 6,
+                    title: 'Fitness Tracker',
+                    description: 'Mobile-first fitness application with workout tracking, progress analytics, and social features for motivation.',
+                    image: '💪',
+                    tech: ['React Native', 'Firebase', 'Redux'],
+                    github: '#',
+                    live: '#',
+                    gradient: 'bg-gradient-primary'
+                }
+            ];
+
+            const services = [
+                {
+                    icon: '💻',
+                    title: 'Web Development',
+                    description: 'Custom web applications built with modern technologies and best practices.',
+                    features: ['Responsive Design', 'Performance Optimization', 'SEO Friendly']
+                },
+                {
+                    icon: '📱',
+                    title: 'Mobile Development',
+                    description: 'Native and cross-platform mobile applications for iOS and Android.',
+                    features: ['React Native', 'Flutter', 'Native iOS/Android']
+                },
+                {
+                    icon: '🎨',
+                    title: 'UI/UX Design',
+                    description: 'Beautiful and intuitive user interfaces that enhance user experience.',
+                    features: ['User Research', 'Prototyping', 'Design Systems']
+                },
+                {
+                    icon: '☁️',
+                    title: 'Cloud Solutions',
+                    description: 'Scalable cloud infrastructure and deployment solutions.',
+                    features: ['AWS/Azure', 'DevOps', 'Microservices']
+                }
+            ];
+
+            const testimonials = [
+                {
+                    name: 'Sarah Johnson',
+                    role: 'CEO, TechStart',
+                    content: 'Alex delivered an exceptional web application that exceeded our expectations. His attention to detail and technical expertise are outstanding.',
+                    avatar: '👩‍💼',
+                    rating: 5
+                },
+                {
+                    name: 'Michael Chen',
+                    role: 'Product Manager, InnovateCorp',
+                    content: 'Working with Alex was a pleasure. He understood our requirements perfectly and delivered a solution that transformed our business.',
+                    avatar: '👨‍💻',
+                    rating: 5
+                },
+                {
+                    name: 'Emily Rodriguez',
+                    role: 'Founder, CreativeStudio',
+                    content: 'Alex brought our vision to life with his incredible development skills. The final product was beautiful, functional, and user-friendly.',
+                    avatar: '👩‍🎨',
+                    rating: 5
+                }
+            ];
+
+            return (
+                <div className="min-h-full bg-gray-50 relative overflow-x-hidden">
+                    {/* Cursor Trails */}
+                    {cursorTrails.map((trail, index) => (
+                        <div
+                            key={trail.id}
+                            className="cursor-trail"
+                            style={{
+                                left: trail.x - 10,
+                                top: trail.y - 10,
+                                opacity: (index + 1) / cursorTrails.length * 0.5,
+                                transform: `scale(${(index + 1) / cursorTrails.length})`
+                            }}
+                        />
+                    ))}
+
+                    {/* Navigation */}
+                    <nav className="fixed top-0 w-full glass-effect z-50 transition-all duration-300">
+                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <div className="flex justify-between items-center h-16">
+                                <div className="text-2xl font-bold gradient-text floating">
+                                    AJ
+                                </div>
+                                
+                                {/* Desktop Navigation */}
+                                <div className="hidden md:flex space-x-8">
+                                    {['home', 'about', 'skills', 'services', 'projects', 'testimonials', 'contact'].map(section => (
+                                        <button
+                                            key={section}
+                                            onClick={() => scrollToSection(section)}
+                                            className={`nav-link px-3 py-2 text-sm font-medium transition-all duration-300 ${
+                                                activeSection === section ? 'active text-gray-800' : 'text-gray-600 hover:text-gray-800'
+                                            }`}
+                                        >
+                                            {section.charAt(0).toUpperCase() + section.slice(1)}
+                                        </button>
+                                    ))}
+                                </div>
+
+                                {/* Mobile menu button */}
+                                <div className="md:hidden">
+                                    <button
+                                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                                        className="text-gray-600 hover:text-gray-800 transition-colors duration-300"
+                                    >
+                                        <span className="text-2xl">{isMenuOpen ? '✕' : '☰'}</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Mobile Navigation */}
+                        {isMenuOpen && (
+                            <div className="md:hidden glass-effect border-t slide-in-right">
+                                <div className="px-2 pt-2 pb-3 space-y-1">
+                                    {['home', 'about', 'skills', 'services', 'projects', 'testimonials', 'contact'].map(section => (
+                                        <button
+                                            key={section}
+                                            onClick={() => scrollToSection(section)}
+                                            className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 rounded-md transition-all duration-300 w-full text-left"
+                                        >
+                                            {section.charAt(0).toUpperCase() + section.slice(1)}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+                    </nav>
+
+                    {/* Hero Section */}
+                    <section id="home" className="min-h-screen flex items-center justify-center animated-bg text-white relative overflow-hidden">
+                        <div 
+                            className="absolute inset-0 opacity-20"
+                            style={{
+                                transform: `translateY(${scrollY * 0.5}px)`,
+                                background: 'radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 50%)'
+                            }}
+                        ></div>
+                        
+                        {/* Floating geometric shapes */}
+                        <div className="absolute top-20 left-10 w-20 h-20 morphing-blob bg-white/10 floating"></div>
+                        <div className="absolute bottom-20 right-10 w-16 h-16 morphing-blob bg-white/10 floating" style={{animationDelay: '2s'}}></div>
+                        <div className="absolute top-1/2 left-20 w-12 h-12 morphing-blob bg-white/10 floating" style={{animationDelay: '4s'}}></div>
+                        
+                        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+                            <div className="fade-in">
+                                <div className="text-6xl mb-6 floating">👋</div>
+                                <h1 className="text-5xl md:text-7xl font-bold mb-6 text-glow">
+                                    Hi, I'm <span className="typewriter">Alex Johnson</span>
+                                </h1>
+                                <p className="text-xl md:text-2xl mb-8 opacity-90">
+                                    Full Stack Developer & UI/UX Enthusiast
+                                </p>
+                                <p className="text-lg mb-12 opacity-80 max-w-2xl mx-auto">
+                                    I create beautiful, functional, and user-centered digital experiences that make a difference. 
+                                    Passionate about clean code, innovative solutions, and continuous learning.
+                                </p>
+                                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                                    <button
+                                        onClick={() => scrollToSection('projects')}
+                                        className="bg-white text-gray-800 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-2xl transition-all duration-300 transform hover:scale-105 pulse-glow magnetic-hover"
+                                    >
+                                        View My Work 🚀
+                                    </button>
+                                    <button
+                                        onClick={() => scrollToSection('contact')}
+                                        className="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white hover:text-gray-800 transition-all duration-300 transform hover:scale-105 magnetic-hover"
+                                    >
+                                        Get In Touch 📧
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* About Section */}
+                    <section id="about" className="py-20 bg-white">
+                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <div className="text-center mb-16 scroll-reveal">
+                                <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-6">About Me</h2>
+                                <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full"></div>
+                            </div>
+                            
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                                <div className="scroll-reveal">
+                                    <div className="relative">
+                                        <div className="w-80 h-80 mx-auto bg-gradient-primary rounded-full flex items-center justify-center text-8xl floating">
+                                            👨‍💻
+                                        </div>
+                                        <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-secondary rounded-full flex items-center justify-center text-2xl floating neon-glow" style={{animationDelay: '1s'}}>
+                                            ⚡
+                                        </div>
+                                        <div className="absolute -bottom-4 -left-4 w-20 h-20 bg-gradient-success rounded-full flex items-center justify-center text-xl floating neon-glow" style={{animationDelay: '2s'}}>
+                                            🎯
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div className="scroll-reveal">
+                                    <h3 className="text-3xl font-bold text-gray-900 mb-6">
+                                        Passionate Developer with 5+ Years Experience
+                                    </h3>
+                                    <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+                                        I'm a full-stack developer who loves creating digital experiences that are not only 
+                                        functional but also beautiful and intuitive. My journey in tech started with curiosity 
+                                        and has evolved into a passion for solving complex problems through code.
+                                    </p>
+                                    <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+                                        When I'm not coding, you'll find me exploring new technologies, contributing to open-source 
+                                        projects, or sharing knowledge with the developer community. I believe in continuous learning 
+                                        and staying updated with the latest industry trends.
+                                    </p>
+                                    
+                                    <div className="grid grid-cols-2 gap-6">
+                                        <div className="text-center p-4 bg-gray-50 rounded-xl hover-lift">
+                                            <div className="text-3xl mb-2">🏆</div>
+                                            <div className="text-2xl font-bold gradient-text">50+</div>
+                                            <div className="text-gray-600">Projects Completed</div>
+                                        </div>
+                                        <div className="text-center p-4 bg-gray-50 rounded-xl hover-lift">
+                                            <div className="text-3xl mb-2">😊</div>
+                                            <div className="text-2xl font-bold gradient-text">30+</div>
+                                            <div className="text-gray-600">Happy Clients</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Skills Section */}
+                    <section id="skills" className="py-20 bg-gray-50" ref={skillsRef}>
+                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <div className="text-center mb-16 scroll-reveal">
+                                <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-6">Skills & Technologies</h2>
+                                <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full"></div>
+                                <p className="text-xl text-gray-600 mt-6 max-w-2xl mx-auto">
+                                    Here are the technologies and tools I work with to bring ideas to life
+                                </p>
+                            </div>
+                            
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                {skills.map((skill, index) => (
+                                    <div
+                                        key={skill.name}
+                                        className="bg-white p-6 rounded-2xl shadow-lg hover-lift scroll-reveal"
+                                        style={{ animationDelay: `${index * 0.1}s` }}
+                                    >
+                                        <div className="flex items-center mb-4">
+                                            <div className="text-3xl mr-4 skill-icon">{skill.icon}</div>
+                                            <div className="flex-1">
+                                                <div className="flex justify-between items-center mb-2">
+                                                    <h3 className="text-lg font-semibold text-gray-900">{skill.name}</h3>
+                                                    <span className="text-sm font-medium gradient-text">{skill.level}%</span>
+                                                </div>
+                                                <div className="w-full bg-gray-200 rounded-full h-3 relative overflow-hidden">
+                                                    <div
+                                                        className={`h-3 rounded-full skill-bar ${skill.color} relative`}
+                                                        style={{
+                                                            width: skillsVisible ? `${skill.level}%` : '0%'
+                                                        }}
+                                                    >
+                                                        <div className="absolute inset-0 bg-white/30 animate-pulse"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Services Section */}
+                    <section id="services" className="py-20 bg-white">
+                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <div className="text-center mb-16 scroll-reveal">
+                                <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-6">Services</h2>
+                                <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full"></div>
+                                <p className="text-xl text-gray-600 mt-6 max-w-2xl mx-auto">
+                                    Comprehensive digital solutions tailored to your needs
+                                </p>
+                            </div>
+                            
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                                {services.map((service, index) => (
+                                    <div
+                                        key={index}
+                                        className="bg-white p-6 rounded-2xl shadow-lg hover-lift scroll-reveal border border-gray-100"
+                                        style={{ animationDelay: `${index * 0.1}s` }}
+                                    >
+                                        <div className="text-4xl mb-4 service-icon">{service.icon}</div>
+                                        <h3 className="text-xl font-bold text-gray-900 mb-3">{service.title}</h3>
+                                        <p className="text-gray-600 mb-4 leading-relaxed">{service.description}</p>
+                                        <ul className="space-y-2">
+                                            {service.features.map((feature, idx) => (
+                                                <li key={idx} className="flex items-center text-sm text-gray-600">
+                                                    <span className="text-green-500 mr-2">✓</span>
+                                                    {feature}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Projects Section */}
+                    <section id="projects" className="py-20 bg-gray-50">
+                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <div className="text-center mb-16 scroll-reveal">
+                                <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-6">Featured Projects</h2>
+                                <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full"></div>
+                                <p className="text-xl text-gray-600 mt-6 max-w-2xl mx-auto">
+                                    A showcase of my recent work and personal projects
+                                </p>
+                            </div>
+                            
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                                {projects.map((project, index) => (
+                                    <div
+                                        key={project.id}
+                                        className="project-card bg-white rounded-2xl shadow-lg overflow-hidden hover-lift scroll-reveal relative group"
+                                        style={{ animationDelay: `${index * 0.1}s` }}
+                                    >
+                                        <div className={`${project.gradient} h-48 flex items-center justify-center text-6xl text-white relative overflow-hidden`}>
+                                            <div className="floating">{project.image}</div>
+                                            <div className="project-overlay absolute inset-0 flex items-center justify-center">
+                                                <div className="flex space-x-4">
+                                                    <a
+                                                        href={project.github}
+                                                        className="bg-white text-gray-900 px-4 py-2 rounded-full hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+                                                    >
+                                                        GitHub 📂
+                                                    </a>
+                                                    <a
+                                                        href={project.live}
+                                                        className="bg-white text-gray-900 px-4 py-2 rounded-full hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+                                                    >
+                                                        Live Demo 🚀
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="p-6">
+                                            <h3 className="text-xl font-bold text-gray-900 mb-3">{project.title}</h3>
+                                            <p className="text-gray-600 mb-4 leading-relaxed">{project.description}</p>
+                                            <div className="flex flex-wrap gap-2">
+                                                {project.tech.map(tech => (
+                                                    <span
+                                                        key={tech}
+                                                        className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full hover:bg-gray-600 hover:text-white transition-all duration-300"
+                                                    >
+                                                        {tech}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Testimonials Section */}
+                    <section id="testimonials" className="py-20 bg-white">
+                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <div className="text-center mb-16 scroll-reveal">
+                                <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-6">What Clients Say</h2>
+                                <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full"></div>
+                                <p className="text-xl text-gray-600 mt-6 max-w-2xl mx-auto">
+                                    Don't just take my word for it - here's what my clients have to say
+                                </p>
+                            </div>
+                            
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                                {testimonials.map((testimonial, index) => (
+                                    <div
+                                        key={index}
+                                        className="testimonial-card p-6 rounded-2xl shadow-lg hover-lift scroll-reveal"
+                                        style={{ animationDelay: `${index * 0.1}s` }}
+                                    >
+                                        <div className="flex items-center mb-4">
+                                            <div className="text-4xl mr-4">{testimonial.avatar}</div>
+                                            <div>
+                                                <h4 className="font-bold text-gray-900">{testimonial.name}</h4>
+                                                <p className="text-sm text-gray-600">{testimonial.role}</p>
+                                            </div>
+                                        </div>
+                                        <div className="flex mb-4">
+                                            {[...Array(testimonial.rating)].map((_, i) => (
+                                                <span key={i} className="text-yellow-400 text-lg">⭐</span>
+                                            ))}
+                                        </div>
+                                        <p className="text-gray-600 leading-relaxed italic">"{testimonial.content}"</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Contact Section */}
+                    <section id="contact" className="py-20 animated-bg text-white">
+                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <div className="text-center mb-16 scroll-reveal">
+                                <h2 className="text-4xl md:text-5xl font-bold mb-6 text-glow">Let's Work Together</h2>
+                                <div className="w-24 h-1 bg-white mx-auto rounded-full"></div>
+                                <p className="text-xl mt-6 max-w-2xl mx-auto opacity-90">
+                                    Have a project in mind? I'd love to hear about it. Let's create something amazing together!
+                                </p>
+                            </div>
+                            
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                                <div className="scroll-reveal">
+                                    <div className="space-y-8">
+                                        <div className="flex items-center space-x-4">
+                                            <div className="w-12 h-12 glass-effect rounded-full flex items-center justify-center text-2xl floating">
+                                                📧
+                                            </div>
+                                            <div>
+                                                <h3 className="text-lg font-semibold">Email</h3>
+                                                <p className="opacity-90">alex.johnson@email.com</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div className="flex items-center space-x-4">
+                                            <div className="w-12 h-12 glass-effect rounded-full flex items-center justify-center text-2xl floating" style={{animationDelay: '0.5s'}}>
+                                                📱
+                                            </div>
+                                            <div>
+                                                <h3 className="text-lg font-semibold">Phone</h3>
+                                                <p className="opacity-90">+1 (555) 123-4567</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div className="flex items-center space-x-4">
+                                            <div className="w-12 h-12 glass-effect rounded-full flex items-center justify-center text-2xl floating" style={{animationDelay: '1s'}}>
+                                                📍
+                                            </div>
+                                            <div>
+                                                <h3 className="text-lg font-semibold">Location</h3>
+                                                <p className="opacity-90">San Francisco, CA</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div className="pt-8">
+                                            <h3 className="text-lg font-semibold mb-4">Follow Me</h3>
+                                            <div className="flex space-x-4">
+                                                {['💼', '🐦', '📘', '📷'].map((icon, index) => (
+                                                    <a
+                                                        key={index}
+                                                        href="#"
+                                                        className="w-12 h-12 glass-effect rounded-full flex items-center justify-center text-xl hover:scale-110 transition-all duration-300 neon-glow"
+                                                    >
+                                                        {icon}
+                                                    </a>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div className="scroll-reveal">
+                                    {isSubmitted ? (
+                                        <div className="glass-effect rounded-2xl p-8 text-center bounce-in">
+                                            <div className="text-6xl mb-4 floating">✅</div>
+                                            <h3 className="text-2xl font-bold mb-4">Message Sent!</h3>
+                                            <p className="opacity-90">Thank you for reaching out. I'll get back to you soon!</p>
+                                        </div>
+                                    ) : (
+                                        <form onSubmit={handleContactSubmit} className="glass-effect rounded-2xl p-8">
+                                            <div className="mb-6">
+                                                <label htmlFor="name" className="block text-sm font-medium mb-2">
+                                                    Your Name
+                                                </label>
+                                                <input
+                                                    type="text"
+                                                    id="name"
+                                                    value={contactForm.name}
+                                                    onChange={(e) => setContactForm({...contactForm, name: e.target.value})}
+                                                    required
+                                                    className="w-full px-4 py-3 glass-effect rounded-lg focus:outline-none focus:ring-2 focus:ring-white/50 transition-all duration-300 text-white placeholder-white/70"
+                                                    placeholder="Enter your name"
+                                                />
+                                            </div>
+                                            
+                                            <div className="mb-6">
+                                                <label htmlFor="email" className="block text-sm font-medium mb-2">
+                                                    Email Address
+                                                </label>
+                                                <input
+                                                    type="email"
+                                                    id="email"
+                                                    value={contactForm.email}
+                                                    onChange={(e) => setContactForm({...contactForm, email: e.target.value})}
+                                                    required
+                                                    className="w-full px-4 py-3 glass-effect rounded-lg focus:outline-none focus:ring-2 focus:ring-white/50 transition-all duration-300 text-white placeholder-white/70"
+                                                    placeholder="Enter your email"
+                                                />
+                                            </div>
+                                            
+                                            <div className="mb-6">
+                                                <label htmlFor="message" className="block text-sm font-medium mb-2">
+                                                    Message
+                                                </label>
+                                                <textarea
+                                                    id="message"
+                                                    rows="5"
+                                                    value={contactForm.message}
+                                                    onChange={(e) => setContactForm({...contactForm, message: e.target.value})}
+                                                    required
+                                                    className="w-full px-4 py-3 glass-effect rounded-lg focus:outline-none focus:ring-2 focus:ring-white/50 transition-all duration-300 text-white placeholder-white/70 resize-none"
+                                                    placeholder="Tell me about your project..."
+                                                ></textarea>
+                                            </div>
+                                            
+                                            <button
+                                                type="submit"
+                                                className="w-full bg-white text-indigo-600 py-4 rounded-lg font-semibold hover:shadow-2xl transition-all duration-300 transform hover:scale-105 pulse-glow"
+                                            >
+                                                Send Message 🚀
+                                            </button>
+                                        </form>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Footer */}
+                    <footer className="bg-gray-900 text-white py-12">
+                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <div className="text-center">
+                                <div className="text-3xl font-bold gradient-text mb-4 floating">AJ</div>
+                                <p className="text-gray-400 mb-6">
+                                    Building the future, one line of code at a time.
+                                </p>
+                                <div className="flex justify-center space-x-6 mb-8">
+                                    {['💼', '🐦', '📘', '📷', '📧'].map((icon, index) => (
+                                        <a
+                                            key={index}
+                                            href="#"
+                                            className="text-2xl hover:scale-110 transition-transform duration-300 hover:text-indigo-400"
+                                        >
+                                            {icon}
+                                        </a>
+                                    ))}
+                                </div>
+                                <div className="border-t border-gray-800 pt-8">
+                                    <p className="text-gray-400">
+                                        © 2024 Alex Johnson. Made with ❤️ and lots of ☕
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            );
+        }
+
+        ReactDOM.render(<Portfolio />, document.getElementById('root'));
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9905ff79a221a735',t:'MTc2MDc2OTE0MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
