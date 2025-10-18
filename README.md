@@ -49,3 +49,29 @@ This is the personal **portfolio website of Khushi Upadhyay**, showcasing projec
 ---
 
 ## Project Structure
+Portfolio/
+├── src/
+│ ├── components/ # React components
+│ ├── pages/ # Page components
+│ ├── assets/ # Images, videos, icons
+│ ├── App.jsx
+│ └── main.jsx
+├── index.html
+├── package.json
+├── tailwind.config.js
+├── postcss.config.js
+└── README.md
+
+
+---
+
+## Installation
+
+1. **Clone the repository**
+```bash
+git clone https://github.com/<your-username>/portfolio.git
+cd portfolio
+npm install
+npm run dev
+http://localhost:5173/
+
